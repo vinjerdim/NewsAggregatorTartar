@@ -1,0 +1,36 @@
+﻿@{
+    if (IsPost)
+    {
+        string text = Request["text"];
+        string pattern = Request["pattern"];
+        int algorithm = Request["algorithm"].AsInt();
+        if (text != "" && pattern != "")
+        {
+            int position;
+            switch (algorithm)
+            {
+                case 1 :
+                    position = StringProcessing.KMPMatch(text, pattern);break;
+                case 2:
+                    position = StringProcessing.BMMatch(text, pattern); break;
+                case 3:
+                    position = StringProcessing.regexMatch(text, pattern); break;
+                default:
+                    position = -1;break;
+            }
+            
+            <p>Text: @text</p>
+            <p>Pattern: @pattern</p>
+            if (position == -1)
+            {
+                <p>Pattern not found</p>
+            }
+            else
+            {
+                <p>Pattern found at @position</p>
+            }
+        } else {
+            <p>Fields must be filled!</p>
+        }
+    }
+}

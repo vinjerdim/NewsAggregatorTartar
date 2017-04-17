@@ -1,0 +1,30 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Main Page";
+}
+<form method="post" action="">
+    <table>
+        <tr>
+            <td>Input text</td>
+            <td><input type="text" name="text" autocomplete="off"></td>
+        </tr>
+        <tr>
+            <td rowspan="3" valign="top">Select algorithm</td>
+            <td><input type="radio" name="algorithm" value="1" checked>KMP</td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="algorithm" value="2">Boyer-Moore</td>
+        </tr>
+        <tr>
+            <td><input type="radio" name="algorithm" value="3">RegEx</td>
+        </tr>
+        <tr>
+            <td>Input pattern</td>
+            <td><input type="text" name="pattern" autocomplete="off"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="GO"></td>
+        </tr>
+    </table>
+</form>
+@RenderPage("Result.cshtml")
