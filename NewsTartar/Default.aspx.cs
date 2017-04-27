@@ -29,7 +29,7 @@ namespace NewsTartar
             }
             else
             {
-                antaraNews = RSSLoader.loadFeedList(3);
+                antaraNews = RSSLoader.loadFeedList(1);
             }
         }
     }

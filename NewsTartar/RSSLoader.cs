@@ -74,9 +74,9 @@ namespace NewsTartar
                                 Link = i.Link,
                                 PublishDate = i.PublishDate,
                                 Description = i.Description,
-                                Content = (idxContent != -1) ? limitString(i.Content, idxContent) : limitString(i.Content, 1)
+                                Content = ""
                             };                         
-                            result.Add(i);
+                            result.Add(temp);
                         }
                         break;
                     case 2:
@@ -90,9 +90,9 @@ namespace NewsTartar
                                 Link = i.Link,
                                 PublishDate = i.PublishDate,
                                 Description = i.Description,
-                                Content = (idxContent != -1) ? limitString(i.Content, idxContent) : limitString(i.Content, 1)
+                                Content = ""
                             };                          
-                            result.Add(i);
+                            result.Add(temp);
                         }
                         break;
                     default:
