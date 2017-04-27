@@ -57,12 +57,13 @@ namespace NewsTartar
         public static List<Feeds> getSearchResult(List<Feeds> feeds, string keyword, int algorithm)
         {
             List<Feeds> result = new List<Feeds>();
+            Regex rx;
             Feeds temp;
             int idxTitle;
             int idxContent;
             foreach (var i in feeds)
             {
-                Regex rx = null;
+                rx = null;
                 switch (algorithm)
                 {
                     case 1:
@@ -91,7 +92,8 @@ namespace NewsTartar
                 }
                 if (idxTitle != -1 || idxContent != -1)
                 {
-                    temp = new Feeds {
+                    temp = new Feeds
+                    {
                         Title = i.Title,
                         Link = i.Link,
                         PublishDate = i.PublishDate,
@@ -111,7 +113,7 @@ namespace NewsTartar
                             temp.Content = rx.Replace(temp.Content, "<b>$0</b>");
                         }
                     }
-                   
+
                     temp.Content = ". . ." + temp.Content + ". . .";
                     result.Add(temp);
                 }
