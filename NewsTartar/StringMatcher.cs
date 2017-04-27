@@ -64,14 +64,14 @@ namespace NewsTartar
 
         public static int BMMatch(string text, string pattern)
         {
+            string tempText = text.ToLower();
+            string tempPattern = pattern.ToLower();
+            
             int[] last = buildLast(pattern);
             int n = text.Length;
             int m = pattern.Length;
             int i = m - 1;
-
-            string tempText = text.ToLower();
-            string tempPattern = pattern.ToLower();
-
+            
             if (i > n - 1)
                 return -1; //nomatch if pattern is longer than text
 
@@ -90,7 +90,7 @@ namespace NewsTartar
                 }
                 else
                 {
-                    int lo = last[tempText[i]]; //last occ
+                    int lo = (tempText[i] >= 0 && tempText[i] < 128) ? last[tempText[i]] : -1; //last occ
                     i = i + m - Math.Min(j, 1 + lo);
                     j = m - 1;
                 }
@@ -110,10 +110,22 @@ namespace NewsTartar
             return last;
         }
 
-        public static int regexMatch(string text, string pattern)
+        public static int regexMatch(string text, string keyword)
         {
-            MatchCollection mc = Regex.Matches(text, pattern);
-            return (mc.Count == 0) ? -1 : mc.Count;
+            Regex rx = new Regex("[\\w\\s]*");
+            Match m = rx.Match(keyword);
+            if (m.Success) {
+                //MatchCollection mc = Regex.Matches(text, pattern);
+                string pattern = "\\s+";
+                string replacement = "[\\w\\W]*";
+                rx = new Regex(pattern);
+                string result = rx.Replace(keyword, replacement);
+
+                rx = new Regex(result, RegexOptions.IgnoreCase);
+                m = rx.Match(text);
+                return (m.Success) ? m.Index : -1;
+            } else { return -1; }
+            
         }
     }
 }

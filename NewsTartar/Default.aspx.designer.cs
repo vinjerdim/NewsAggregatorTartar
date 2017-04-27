@@ -13,6 +13,15 @@ namespace NewsTartar {
     public partial class _Default {
         
         /// <summary>
+        /// countAntara control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label countAntara;
+        
+        /// <summary>
         /// antara control.
         /// </summary>
         /// <remarks>
@@ -22,13 +31,13 @@ namespace NewsTartar {
         protected global::System.Web.UI.WebControls.GridView antara;
         
         /// <summary>
-        /// detik control.
+        /// countViva control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView detik;
+        protected global::System.Web.UI.WebControls.Label countViva;
         
         /// <summary>
         /// viva control.
@@ -38,5 +47,23 @@ namespace NewsTartar {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView viva;
+        
+        /// <summary>
+        /// countDetik control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label countDetik;
+        
+        /// <summary>
+        /// detik control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView detik;
     }
 }

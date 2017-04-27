@@ -22,14 +22,27 @@ namespace NewsTartar
             {
                 keyword = Request["keyword"];
                 algorithm = Int32.Parse(Request["algorithm"]);
-                
+
                 result = RSSLoader.getSearchResult(antaraNews, keyword, algorithm);
                 antara.DataSource = result;
-                antara.DataBind();                
+                antara.DataBind();
+                countAntara.Text = result.Count + " search result(s)";
+                
+                result = RSSLoader.getSearchResult(detikNews, keyword, algorithm);
+                detik.DataSource = result;
+                detik.DataBind();
+                countDetik.Text = result.Count + " search result(s)";
+
+                result = RSSLoader.getSearchResult(vivaNews, keyword, algorithm);
+                viva.DataSource = result;
+                viva.DataBind();
+                countViva.Text = result.Count + " search result(s)";
             }
             else
             {
                 antaraNews = RSSLoader.loadFeedList(1);
+                detikNews = RSSLoader.loadFeedList(2);
+                vivaNews = RSSLoader.loadFeedList(3);
             }
         }
     }

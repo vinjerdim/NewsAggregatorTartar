@@ -40,8 +40,15 @@
         <div class="content-wrapper">
             <div class="float-left">
                 <p class="site-title">
-                    <a runat="server" href="~/">your logo here</a>
+                    <a runat="server" href="~/"><img src="Images/coollogo_com-207241.png"></a>
                 </p>
+            </div>
+            <div class="float-right">
+                <nav>
+                    <ul id="menu">
+                        <li><a runat="server" href="Default.aspx">Main</a></li>
+                    </ul>
+                </nav>
             </div>
             <div class="float-right">
                 <nav>
