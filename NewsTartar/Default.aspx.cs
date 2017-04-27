@@ -24,7 +24,7 @@ namespace NewsTartar
                 algorithm = Int32.Parse(Request["algorithm"]);
                 
                 result = RSSLoader.getSearchResult(antaraNews, keyword, algorithm);
-                antara.DataSource = antaraNews;
+                antara.DataSource = result;
                 antara.DataBind();                
             }
             else

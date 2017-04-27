@@ -36,8 +36,7 @@ namespace NewsTartar
                 foreach (var i in items)
                 {
                     string content = getHTMLContent(i.link, htmlElement);
-                    if (!content.Equals(""))
-                    {
+                    if (!content.Equals("")) {
                         Feeds temp = new Feeds
                         {
                             Title = i.title,
@@ -46,7 +45,7 @@ namespace NewsTartar
                             Description = i.description,
                             Content = content
                         };
-                        result.Add(temp);
+                        result.Add(temp);   
                     }
                 }
             }
@@ -66,37 +65,27 @@ namespace NewsTartar
                     case 1:
                         idxTitle = StringMatcher.KMPMatch(i.Title, keyword);
                         idxContent = StringMatcher.KMPMatch(i.Content, keyword);
-                        if (idxTitle != -1)
-                        {
-                            temp = new Feeds
-                            {
-                                Title = i.Title,
-                                Link = i.Link,
-                                PublishDate = i.PublishDate,
-                                Description = i.Description,
-                                Content = ""
-                            };                         
-                            result.Add(temp);
-                        }
                         break;
                     case 2:
                         idxTitle = StringMatcher.BMMatch(i.Title, keyword);
                         idxContent = StringMatcher.BMMatch(i.Content, keyword);
-                        if (idxTitle != -1)
-                        {
-                            temp = new Feeds
-                            {
-                                Title = i.Title,
-                                Link = i.Link,
-                                PublishDate = i.PublishDate,
-                                Description = i.Description,
-                                Content = ""
-                            };                          
-                            result.Add(temp);
-                        }
                         break;
                     default:
+                        idxTitle = -1;
+                        idxContent = -1;
                         break;
+                }
+                if (idxTitle != -1 || idxContent != -1)
+                {
+                    temp = new Feeds {
+                        Title = i.Title,
+                        Link = i.Link,
+                        PublishDate = i.PublishDate,
+                        Description = i.Description,
+                        Content = (idxTitle != -1) ? limitString(i.Content, 0) : limitString(i.Content, idxContent)
+                    };
+                    temp.Content = ". . ." + temp.Content + ". . .";
+                    result.Add(temp);
                 }
             }
             return result;
@@ -116,7 +105,7 @@ namespace NewsTartar
             int i = idx;
             int j = idx;
             int count = 0;
-            while (count < 100)
+            while (count < 100 && i > 0)
             {
                 if (j + 1 < content.Length)
                 {
