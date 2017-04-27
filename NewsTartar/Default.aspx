@@ -31,6 +31,7 @@
             </tr>
         </table>
     </form>
+    <h3>AntaraNews</h3>
     <asp:GridView ID="antara" runat="server" AutoGenerateColumns="false" ShowHeader="false" Width="90%">
         <Columns>
             <asp:TemplateField>
@@ -46,6 +47,7 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
+    <h3>Detikcom</h3>
     <asp:GridView ID="detik" runat="server" AutoGenerateColumns="false" ShowHeader="false" Width="90%">
         <Columns>
             <asp:TemplateField>
@@ -61,21 +63,7 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <asp:GridView ID="tempo" runat="server" AutoGenerateColumns="false" ShowHeader="false" Width="90%">
-        <Columns>
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <table>
-                        <tr><td><%#Eval("PublishDate")%></td></tr>
-                        <tr><td><%#Eval("Title")%></td></tr>
-                        <tr><td><%#Eval("Description")%></td></tr>
-                        <tr><td><a href=<%#Eval("Link")%>><%#Eval("Link")%></a></td></tr>
-                        <tr><td><%#Eval("Content")%></td></tr>
-                    </table>
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
+    <h3>VivaNews</h3>
     <asp:GridView ID="viva" runat="server" AutoGenerateColumns="false" ShowHeader="false" Width="90%">
         <Columns>
             <asp:TemplateField>

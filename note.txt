@@ -1,0 +1,3 @@
+antara = <div id = "content_news">
+detik = <div class = "text_detail">
+viva = <span itemprop="description">

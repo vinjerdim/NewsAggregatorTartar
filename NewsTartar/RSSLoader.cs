@@ -56,21 +56,42 @@ namespace NewsTartar
         public static List<Feeds> getSearchResult(List<Feeds> feeds, string keyword, int algorithm)
         {
             List<Feeds> result = new List<Feeds>();
+            Feeds temp;
+            int idxTitle;
+            int idxContent;
             foreach (var i in feeds)
             {
-                
                 switch (algorithm)
                 {
                     case 1:
-                        if (StringMatcher.KMPMatch(i.Title, keyword) != -1)
+                        idxTitle = StringMatcher.KMPMatch(i.Title, keyword);
+                        idxContent = StringMatcher.KMPMatch(i.Content, keyword);
+                        if (idxTitle != -1)
                         {
-                            
+                            temp = new Feeds
+                            {
+                                Title = i.Title,
+                                Link = i.Link,
+                                PublishDate = i.PublishDate,
+                                Description = i.Description,
+                                Content = (idxContent != -1) ? limitString(i.Content, idxContent) : limitString(i.Content, 1)
+                            };                         
                             result.Add(i);
                         }
                         break;
                     case 2:
-                        if (StringMatcher.BMMatch(i.Title, keyword) != -1)
+                        idxTitle = StringMatcher.BMMatch(i.Title, keyword);
+                        idxContent = StringMatcher.BMMatch(i.Content, keyword);
+                        if (idxTitle != -1)
                         {
+                            temp = new Feeds
+                            {
+                                Title = i.Title,
+                                Link = i.Link,
+                                PublishDate = i.PublishDate,
+                                Description = i.Description,
+                                Content = (idxContent != -1) ? limitString(i.Content, idxContent) : limitString(i.Content, 1)
+                            };                          
                             result.Add(i);
                         }
                         break;
@@ -88,6 +109,28 @@ namespace NewsTartar
 
             HtmlNode node = doc.DocumentNode.SelectSingleNode(element);
             return (node != null) ? node.InnerText : "";
+        }
+
+        public static string limitString(string content, int idx)
+        {
+            int i = idx;
+            int j = idx;
+            int count = 0;
+            while (count < 100)
+            {
+                if (j + 1 < content.Length)
+                {
+                    j++;
+                    count++;
+                }
+                if (i - 1 >= 0)
+                {
+                    i--;
+                    count++;
+                }
+            }
+            string result = content.Substring(i, 100);
+            return result;
         }
     }
 }

@@ -12,7 +12,6 @@ namespace NewsTartar
         public string keyword = "";
         public int algorithm = 0;
         public static List<Feeds> antaraNews = new List<Feeds>();
-        public static List<Feeds> tempoNews = new List<Feeds>();
         public static List<Feeds> detikNews = new List<Feeds>();
         public static List<Feeds> vivaNews = new List<Feeds>();
         public static List<Feeds> result = new List<Feeds>();
@@ -23,24 +22,14 @@ namespace NewsTartar
             {
                 keyword = Request["keyword"];
                 algorithm = Int32.Parse(Request["algorithm"]);
-               // result = RSSLoader.getSearchResult(antaraNews, keyword, algorithm);
+                
+                result = RSSLoader.getSearchResult(antaraNews, keyword, algorithm);
                 antara.DataSource = antaraNews;
-                antara.DataBind();
-                /**
-                result = RSSLoader.getSearchResult(tempoNews, keyword, algorithm);
-                tempo.DataSource = result;
-                tempo.DataBind();
-                result = RSSLoader.getSearchResult(vivaNews, keyword, algorithm);
-                viva.DataSource = result;
-                viva.DataBind();
-                result = RSSLoader.getSearchResult(detikNews, keyword, algorithm);
-                detik.DataSource = result;
-                detik.DataBind();
-                 * */
+                antara.DataBind();                
             }
             else
             {
-                antaraNews = RSSLoader.loadFeedList(2);
+                antaraNews = RSSLoader.loadFeedList(3);
             }
         }
     }
