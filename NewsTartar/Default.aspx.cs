@@ -37,12 +37,10 @@ namespace NewsTartar
             {
                 if (antaraNews.Count == 0)
                 {
-                    antaraNews.Clear();
                     antaraNews = RSSLoader.loadFeedList(1);
                 }
                 if (vivaNews.Count == 0)
                 {
-                    vivaNews.Clear();
                     vivaNews = RSSLoader.loadFeedList(3);
                 }
             }
