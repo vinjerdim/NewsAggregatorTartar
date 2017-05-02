@@ -1,4 +1,4 @@
-﻿<%@ Page Title="News Aggregator" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NewsTartar._Default" %>
+﻿    <%@ Page Title="News Aggregator" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="NewsTartar._Default" %>
 
 <asp:Content runat="server" ID="FeaturedContent" ContentPlaceHolderID="FeaturedContent">
     <section class="featured">
@@ -65,22 +65,4 @@
             </asp:TemplateField>
         </Columns>
     </asp:GridView>
-    <h3>Detikcom</h3>
-    <asp:Label ID="countDetik" runat="server"></asp:Label>
-    <asp:GridView ID="detik" runat="server" AutoGenerateColumns="false" ShowHeader="false" Width="90%">
-        <Columns>
-            <asp:TemplateField>
-                <ItemTemplate>
-                    <table>
-                        <tr><td><%#Eval("PublishDate")%></td></tr>
-                        <tr><td><%#Eval("Title")%></td></tr>
-                        <tr><td><%#Eval("Description")%></td></tr>
-                        <tr><td><a href=<%#Eval("Link")%>><%#Eval("Link")%></a></td></tr>
-                        <tr><td><%#Eval("Content")%></td></tr>
-                    </table>
-                </ItemTemplate>
-            </asp:TemplateField>
-        </Columns>
-    </asp:GridView>
-    
 </asp:Content>

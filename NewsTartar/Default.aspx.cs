@@ -27,11 +27,6 @@ namespace NewsTartar
                 antara.DataSource = result;
                 antara.DataBind();
                 countAntara.Text = result.Count + " search result(s)";
-                
-                result = RSSLoader.getSearchResult(detikNews, keyword, algorithm);
-                detik.DataSource = result;
-                detik.DataBind();
-                countDetik.Text = result.Count + " search result(s)";
 
                 result = RSSLoader.getSearchResult(vivaNews, keyword, algorithm);
                 viva.DataSource = result;
@@ -40,9 +35,16 @@ namespace NewsTartar
             }
             else
             {
-                antaraNews = RSSLoader.loadFeedList(1);
-                detikNews = RSSLoader.loadFeedList(2);
-                vivaNews = RSSLoader.loadFeedList(3);
+                if (antaraNews.Count == 0)
+                {
+                    antaraNews.Clear();
+                    antaraNews = RSSLoader.loadFeedList(1);
+                }
+                if (vivaNews.Count == 0)
+                {
+                    vivaNews.Clear();
+                    vivaNews = RSSLoader.loadFeedList(3);
+                }
             }
         }
     }

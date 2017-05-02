@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,39 +18,50 @@ namespace NewsTartar
             switch (newsSource)
             {
                 case 1: rssURL = "http://www.antaranews.com/rss/terkini"; htmlElement = "//div[@id='content_news']"; break;
-                case 2: rssURL = "http://rss.detik.com/index.php/hot"; htmlElement = "//div[@id='detikdetailtext']"; break;
                 case 3: rssURL = "http://rss.viva.co.id/get/all"; htmlElement = "//span[@itemprop='description']"; break;
                 default: rssURL = ""; htmlElement = ""; break;
             }
             List<Feeds> result = new List<Feeds>();
             XDocument doc = new XDocument();
-            doc = XDocument.Load(rssURL);
-            
-            var items = (from x in doc.Descendants("item")
-                                select new
-                                {
-                                title = x.Element("title").Value,
-                                link = x.Element("link").Value,
-                                description = x.Element("description").Value,
-                                publishDate = x.Element("pubDate").Value
-                                });
-            if (items != null)
+            try
             {
-                foreach (var i in items)
+                doc = XDocument.Load(rssURL);
+
+                var items = (from x in doc.Descendants("item")
+                             select new
+                             {
+                                 title = x.Element("title").Value,
+                                 link = x.Element("link").Value,
+                                 description = x.Element("description").Value,
+                                 publishDate = x.Element("pubDate").Value
+                             });
+                if (items != null)
                 {
-                    string content = getHTMLContent(i.link, htmlElement);
-                    if (!content.Equals("")) {
-                        Feeds temp = new Feeds
+                    foreach (var i in items)
+                    {
+                        string content = getHTMLContent(i.link, htmlElement);
+                        if (!content.Equals(""))
                         {
-                            Title = i.title,
-                            Link = i.link,
-                            PublishDate = i.publishDate,
-                            Description = i.description,
-                            Content = content
-                        };
-                        result.Add(temp);   
+                            Feeds temp = new Feeds
+                            {
+                                Title = i.title,
+                                Link = i.link,
+                                PublishDate = i.publishDate,
+                                Description = i.description,
+                                Content = content
+                            };
+                            result.Add(temp);
+                        }
                     }
                 }
+            }
+            catch (WebException e)
+            {
+
+            }
+            catch (UriFormatException e)
+            {
+
             }
             return result;
         }
